@@ -1,0 +1,11 @@
+﻿@using NancySample.Modules.Application
+@using NancySample.Modules.Home;
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<HomeModel>
+@{
+    var app = (ApplicationModel)@ViewBag.AppModel;
+    Layout = app.LayoutPath;
+}
+<p>Hello, @Model.UserName! You are user #@Model.UserId</p>
+<p>
+    You can <a href="@app.Linker.BuildRelativeUri(Context, RouteNames.GetLogout)">log out</a> if you want!
+</p>

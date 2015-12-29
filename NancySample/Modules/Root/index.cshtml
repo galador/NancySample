@@ -1,0 +1,10 @@
+﻿@using NancySample.Modules.Application
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<dynamic>
+@{
+    var app = (ApplicationModel)@ViewBag.AppModel;
+    Layout = app.LayoutPath;
+}
+
+<p>
+    You're not logged in. :( Won't you <a href="@app.Linker.BuildRelativeUri(Context, RouteNames.GetLogin)">log in</a>?
+</p>

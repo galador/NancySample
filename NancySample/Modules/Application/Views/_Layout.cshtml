@@ -1,0 +1,26 @@
+﻿@using NancySample.Modules.Application
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<dynamic>
+@{
+    var app = (ApplicationModel)@ViewBag.AppModel;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@app.Title</title>
+
+    <style type="text/css">
+        body {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <img src="~/Content/nancy-logo.png" alt="Nancy logo" /><br />
+
+    @RenderBody()
+    @Html.Raw(app.ProfilerIncludes)
+
+    <footer>&copy; @DateTime.Today.Year @app.SiteName</footer>
+</body>
+</html>
