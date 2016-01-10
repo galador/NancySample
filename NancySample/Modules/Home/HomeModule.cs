@@ -4,7 +4,7 @@ using NancySample.Modules.Application;
 
 namespace NancySample.Modules.Home
 {
-    public class HomeModule : ApplicationModule
+    public class HomeModule : AuthenticatedModule
     {
         public HomeModule(IAppDbContext dbCtx, IResourceLinker linker) : base(dbCtx, linker)
         {

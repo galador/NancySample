@@ -42,7 +42,7 @@ namespace NancySample.Modules.Auth
             return HexStringFromBytes(hashBytes);
         }
 
-        private string HexStringFromBytes(byte[] bytes)
+        private static string HexStringFromBytes(byte[] bytes)
         {
             var sb = new StringBuilder();
             foreach (var b in bytes)
@@ -60,7 +60,7 @@ namespace NancySample.Modules.Auth
         {
             var encoder = new SaltRawSaltPasswordEncoder();
             
-            Get[RouteNames.GetLogin, "/auth/login"] = _ =>
+            Get[RouteNames.GetLogin, "/auth/login"] = arg =>
             {
                 AppModel.PageTitle = "Login";
                 return View["login", new { linker }];
@@ -75,13 +75,11 @@ namespace NancySample.Modules.Auth
             Post[RouteNames.PostLogin, "/auth/login"] = parameters =>
             {
                 var loginParams = this.Bind<AuthModel>();
-
-                var member = dbCtx.Users.First(x => x.UserName == loginParams.Username);
+                var member = dbCtx.Users.FirstOrDefault(x => x.UserName == loginParams.Username);
                 if (member == null || !encoder.IsPasswordValid(member.PassHash, loginParams.Password, member.PassSalt))
                 {
                     return "username and/or password was incorrect";
                 }
-
                 var expiry = loginParams.RememberMe ? DateTime.MaxValue : DateTime.Now.AddDays(14);
                 var rootPath = linker.BuildRelativeUri(Context, RouteNames.GetRoot).ToString();
                 return this.LoginAndRedirect(member.Uuid, expiry, rootPath);

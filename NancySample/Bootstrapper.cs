@@ -6,7 +6,6 @@ using Nancy.Bootstrapper;
 using Nancy.Cryptography;
 using Nancy.Hosting.Aspnet;
 using Nancy.TinyIoc;
-using Nancy.ViewEngines;
 using NancySample.Models;
 using StackExchange.Profiling;
 using StackExchange.Profiling.EntityFramework6;

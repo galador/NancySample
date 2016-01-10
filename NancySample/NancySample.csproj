@@ -145,6 +145,7 @@
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="ErrorHandler.cs" />
+    <Compile Include="Models\ErrorResponse.cs" />
     <Compile Include="Modules\Application\DateTimeExtensions.cs" />
     <Compile Include="Modules\Application\Routes.cs" />
     <Compile Include="Migrations\201512232052_CreateUserTable.cs" />
@@ -170,8 +171,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Modules\Application\Views\_Layout.cshtml" />
-    <Content Include="Modules\Application\Views\Errors\500.cshtml" />
-    <Content Include="Modules\Application\Views\Errors\503.cshtml" />
     <Content Include="Modules\Root\index.cshtml" />
     <Content Include="Modules\Auth\login.cshtml" />
     <Content Include="AppSettings.config">
@@ -180,7 +179,11 @@
     <Content Include="AppSettings.default.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Modules\Application\Views\Error.cshtml" />
+    <None Include="Properties\PublishProfiles\PublishSample.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

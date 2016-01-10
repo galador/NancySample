@@ -1,0 +1,54 @@
+﻿@using NancySample.Models
+@{
+    var resp = (ErrorResponse)Model;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@resp.Title</title>
+</head>
+<body>
+    <div>
+        @resp.Summary
+    </div>
+
+    <br />
+
+    @if (!string.IsNullOrWhiteSpace(resp.Details))
+    {
+        <div>
+            @resp.Details
+        </div>
+
+        <br />
+    }
+
+    @if (@resp.ShowDetails)
+    {
+        <table>
+            <tr>
+                <td colspan="2">Debug Data</td>
+            </tr>
+            <tr>
+                <td>Request URL</td>
+                <td>@resp.Context.Request.Url.ToString()</td>
+            </tr>
+            <tr>
+                <td>Request Path</td>
+                <td>@resp.Context.Request.Path</td>
+            </tr>
+            <tr>
+                <td>Trace</td>
+                <td><pre>@resp.Context.Trace.TraceLog.ToString()</pre></td>
+            </tr>
+            <tr>
+                <td>Resolved Route</td>
+                <td>@resp.Context.ResolvedRoute.Description.Method @resp.Context.ResolvedRoute.Description.Path</td>
+            </tr>
+        </table>
+    }
+
+    <a href="javascript:history.back()">Go Back</a>
+</body>
+</html>
